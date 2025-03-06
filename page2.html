@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PricingDesk API Guide</title>
+  <style>
+    /* Base resets and body styling */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #121212;
+      color: #FFFFFF;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* Header styling */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #1f1f1f;
+      padding: 20px;
+      border-bottom: 2px solid #444;
+    }
+
+    .header img.logo {
+      height: 50px;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      margin-left: 10px;
+    }
+
+    /* Main container styling */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 30px auto;
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      padding: 20px;
+    }
+
+    /* Section block styling */
+    .section {
+      background-color: #222;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      border-left: 5px solid #007bff; /* Accent color */
+    }
+
+    .section h2 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #444;
+      padding-bottom: 5px;
+    }
+
+    /* Endpoint detail styling */
+    .endpoint {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #2c2c2c;
+      border-radius: 6px;
+      border: 1px solid #333;
+    }
+
+    .endpoint h3 {
+      margin-bottom: 5px;
+    }
+
+    .endpoint pre {
+      background-color: #1a1a1a;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #333;
+      overflow-x: auto;
+    }
+
+    .subheading {
+      font-size: 16px;
+      margin-bottom: 5px;
+      color: #ccc;
+      margin-top: 10px;
+      text-decoration: underline;
+    }
+
+    /* Tables for parameters or responses */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      margin-bottom: 15px;
+    }
+
+    th, td {
+      border: 1px solid #444;
+      padding: 10px;
+    }
+
+    th {
+      background-color: #333;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    td {
+      background-color: #2c2c2c;
+    }
+
+    /* Code blocks or highlight */
+    code {
+      background-color: #333;
+      padding: 2px 4px;
+      border-radius: 4px;
+      color: #00ffcc;
+    }
+
+    /* Section references */
+    .section-reference {
+      font-size: 12px;
+      color: #999;
+      margin-top: 15px;
+    }
+
+    .note {
+      background-color: #333;
+      color: #f0ad4e;
+      padding: 10px;
+      border-radius: 4px;
+      margin-top: 10px;
+      border-left: 4px solid #ffbf00;
+    }
+
+    .important {
+      background-color: #333;
+      color: #dc3545;
+      padding: 10px;
+      border-radius: 4px;
+      margin-top: 10px;
+      border-left: 4px solid #ff4d4d;
+    }
+
+    /* Copy button styling */
+    .copy-btn {
+      display: inline-block;
+      margin-top: 5px;
+      background-color: #007bff;
+      color: #ffffff;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .copy-btn:hover {
+      background-color: #0056b3;
+    }
+
+    /* Footer styling */
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #777;
+      font-size: 14px;
+    }
+
+    ul.small-bullets {
+        list-style-position: outside; 
+        margin-left: -0.0em;          
+        padding-left: 1.5em;         
+    }
+  
+  ul.small-bullets li::marker {
+    font-size: 0.75em; /* Decrease the bullet font size */
+  }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <img src="logo.png" alt="Logo" class="logo" />
+    <h1>Pricing Desk API Guide</h1>
+  </div>
+
+  <!-- Main Container -->
+  <div class="container">
+
+    <!-- Introduction Section -->
+    <div class="section">
+      <h2>Introduction</h2>
+      <p>
+        Welcome to the <strong>PriceDesk API</strong> guide. This document covers the available 
+        endpoints for authentication and price calculations. You will find details 
+        on request methods, parameters, and expected responses. 
+      </p>
+      <p>
+        Use this guide to integrate your applications or services with the PriceDesk
+        platform programmatically.
+      </p>
+    </div>
+
+    <!-- Authentication Section -->
+    <div class="section">
+      <h2>1. Authentication</h2>
+      <p>
+        The PriceDesk API requires authentication using a <strong>Bearer Token</strong> for most 
+        operations. However, to obtain this token, you must first authenticate using 
+        the <strong>Login</strong> endpoint.
+      </p>
+
+      <!-- Login Endpoint -->
+      <div class="endpoint">
+        <h3>Endpoint: Login</h3>
+        <p class="subheading">Description</p>
+        <p>
+          Logs in a user and retrieves a Bearer Token necessary for subsequent API calls.
+        </p>
+
+        <p class="subheading">HTTP Method</p>
+        <p>POST</p>
+
+        <p class="subheading">URL</p>
+        <p>
+          <code>http://3.21.123.23:8011/login?email=&lt;EMAIL&gt;&amp;password=&lt;PASSWORD&gt;</code>
+        </p>
+
+        <p class="subheading">Query Parameters</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Type</th>
+              <th>Description</th>
+              <th>Required</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>email</td>
+              <td>String</td>
+              <td>User's email address for authentication.</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td>password</td>
+              <td>String</td>
+              <td>User's password for authentication.</td>
+              <td>Yes</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="subheading">Example Request</p>
+        <pre>
+POST /login?email=abhatti@truelightenergy.com&amp;password=abhatti@truelightenergy.com HTTP/1.1
+Host: 3.21.123.23:8011
+</pre>
+
+        <button class="copy-btn" onclick="copyToClipboard(`POST /login?email=abhatti@truelightenergy.com&password=abhatti@truelightenergy.com HTTP/1.1\nHost: 3.21.123.23:8011\n`)">Copy</button>
+
+        <p class="subheading">Response</p>
+        <p>The response body will contain a JSON Web Token (JWT) if the credentials are valid.</p>
+        <pre>
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9....",
+  "expires": 1738419383,
+  "role": "admin",
+  ...
+}
+        </pre>
+
+        <div class="note">
+          <strong>Note:</strong> The exact response fields may vary; ensure to store the returned token securely.
+        </div>
+      </div>
+    </div>
+
+    <!-- Price Calculation Section -->
+    <div class="section">
+      <h2>2. Price Calculation</h2>
+      <p>
+        Once you have obtained a valid Bearer Token, you can use it to access the
+        PriceDesk calculation endpoint.
+      </p>
+
+      <!-- Price Calculation Endpoint -->
+      <div class="endpoint">
+        <h3>Endpoint: Price Calculation</h3>
+        <p class="subheading">Description</p>
+        <p>
+          Retrieves a price calculation based on the request body parameters. 
+          The data may include summary, monthly summary, grouped costs, hourly costs, or
+          hourly calculations depending on the <code>response_type</code> specified.
+        </p>
+
+        <p class="subheading">HTTP Method</p>
+        <p>GET</p>
+
+        <p class="subheading">URL</p>
+        <p>
+          <code>http://3.21.123.23:8011/calculateprices</code>
+        </p>
+
+        <p class="subheading">Headers</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Header</th>
+              <th>Value</th>
+              <th>Description</th>
+              <th>Required</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Authorization</td>
+              <td>Bearer &lt;token&gt;</td>
+              <td>Use the token obtained from the Login endpoint.</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td>Content-Type</td>
+              <td>application/json</td>
+              <td>Specifies that the request body is JSON.</td>
+              <td>Yes</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="subheading">Request Body</p>
+        <p>
+          The request body (raw JSON) includes one or more price request forms, along with 
+          <code>response_type</code> and <code>response_file_type</code> parameters.
+        </p>
+        <pre>
+{
+  "price_request_forms": [
+    {
+      "Account Name": "ABC Co",
+      "Account Address": "1st Main St",
+      "Account #": "111111-111111",
+      "Curve Date": "01/01/2023",
+      "TimeStamp": "08:04:04+00:00",
+      "Start Date": "11/01/2024",
+      "Term (Months)": "12",
+      "End Date": "11/01/2025",
+      "Control Area": "MISO",
+      "Utility": "AMEREN",
+      "Load Zone": "AMILCILCO",
+      "Capacity Zone": "AMILCILCO",
+      "State": "IL",
+      "Load Profile": "DS2HH-CILCO",
+      "Voltage": "Secondary",
+      "PLC (kW-mo)": "2.3",
+      "NSPL (kW-mo)": "2.5",
+      "Margin ($/MWh)": "10.00",
+      "Sleeve Fee ($/MWh)": "1.25",
+      "Utility Billing Surcharge ($/MWh)": "0.50",
+      "Other 1 ($/MWh)": "1.00",
+      "Other 2 ($/MWh)": "0.00",
+      "Historical Usage": "N"
+    }
+  ],
+  "response_type": "hourly_calulation", 
+  // Possible values: "summary", "monthly_summary", "grouped_costs", "hourly_costs", "hourly_calulation"
+
+  "response_file_type": "xlsx"
+  // Possible values: "csv" or "xlsx"
+}
+    </pre>
+        <button class="copy-btn" onclick="copyToClipboard(`{
+  \"price_request_forms\": [
+    {
+      \"Account Name\": \"ABC Co\",
+      \"Account Address\": \"1st Main St\",
+      \"Account #\": \"111111-111111\",
+      \"Curve Date\": \"01/01/2023\",
+      \"TimeStamp\": \"08:04:04+00:00\",
+      \"Start Date\": \"11/01/2024\",
+      \"Term (Months)\": \"12\",
+      \"End Date\": \"11/01/2025\",
+      \"Control Area\": \"MISO\",
+      \"Utility\": \"AMEREN\",
+      \"Load Zone\": \"AMILCILCO\",
+      \"Capacity Zone\": \"AMILCILCO\",
+      \"State\": \"IL\",
+      \"Load Profile\": \"DS2HH-CILCO\",
+      \"Voltage\": \"Secondary\",
+      \"PLC (kW-mo)\": \"2.3\",
+      \"NSPL (kW-mo)\": \"2.5\",
+      \"Margin ($/MWh)\": \"10.00\",
+      \"Sleeve Fee ($/MWh)\": \"1.25\",
+      \"Utility Billing Surcharge ($/MWh)\": \"0.50\",
+      \"Other 1 ($/MWh)\": \"1.00\",
+      \"Other 2 ($/MWh)\": \"0.00\",
+      \"Historical Usage\": \"N\"
+    }
+  ],
+  \"response_type\": \"hourly_calulation\",
+  \"response_file_type\": \"xlsx\"
+}`)">Copy</button>
+
+        <div class="important">
+          <strong>Important:</strong> 
+          - The <code>price_request_forms</code> array must contain at least one object with all required fields.<br/>
+          - Ensure <code>response_type</code> and <code>response_file_type</code> are supported.  
+        </div>
+
+        <p class="subheading">Example Request</p>
+        <pre>
+GET /calculateprices HTTP/1.1
+Host: 3.21.123.23:8011
+Authorization: Bearer <your_token_here>
+Content-Type: application/json
+
+{
+  "price_request_forms": [...],
+  "response_type": "hourly_calculation",
+  "response_file_type": "xlsx"
+}
+        </pre>
+        <button class="copy-btn" onclick="copyToClipboard(`GET /calculateprices HTTP/1.1\nHost: 3.21.123.23:8011\nAuthorization: Bearer <your_token_here>\nContent-Type: application/json\n\n{\n  \"price_request_forms\": [...],\n  \"response_type\": \"hourly_calulation\",\n  \"response_file_type\": \"xlsx\"\n}`)">Copy</button>
+
+        <p class="subheading">Expected Response</p>
+        <p>
+          The response will contain detailed cost or usage data in JSON format. 
+          If a file download is triggered (depending on <code>response_file_type</code>), 
+          you may receive binary data that can be saved as <code>.csv</code> or <code>.xlsx</code>.
+        </p>
+        <pre>
+{
+  "status": "success",
+  "data": {
+    "type": "hourly_calculation",
+    "results": [
+      ...
+    ]
+  }
+}
+        </pre>
+      </div>
+    </div>
+
+    <!-- Security Considerations -->
+    <div class="section">
+      <h2>3. Security Considerations</h2>
+      <p>
+        Always store and transmit the Bearer Token securely. For production environments, 
+        use HTTPS to protect credentials and data in transit.
+      </p>
+      <div class="note">
+        <strong>Note:</strong> Tokens may expire. Ensure your integration gracefully handles expired 
+        tokens by re-authenticating as needed.
+      </div>
+    </div>
+
+    <!-- FAQ / Troubleshooting -->
+    <div class="section">
+        <h2>4. FAQ / Troubleshooting</h2>
+    
+        <p class="subheading">Q: Why am I getting a 401 Unauthorized error?</p>
+        <p>
+        A 401 status typically indicates an invalid or expired token. Make sure you have:
+        </p>
+    
+        <!-- Apply the custom class to the UL -->
+        <ul class="small-bullets">
+        <li>Called the <strong>Login</strong> endpoint to retrieve a valid token.</li>
+        <li>Included the <code>Authorization: Bearer &lt;token&gt;</code> header in your request.</li>
+        </ul>
+    
+        <p class="subheading">Q: Can I use a POST request for price calculation?</p>
+        <p>
+        Currently, the <strong>pricecalculation</strong> endpoint is configured to handle a <strong>GET</strong>
+        with a raw JSON body. Check with support if you require a POST-based workflow.
+        </p>
+    
+        <p class="subheading">Q: What file types are supported for downloading results?</p>
+        <p>
+        Both <code>CSV</code> and <code>XLSX</code> are supported for <code>response_file_type</code>.
+        Specify either <code>csv</code> or <code>xlsx</code> in the request body.
+        </p>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>© 2025 Pricing Desk API Documentation</p>
+  </div>
+
+  <script>
+    function copyToClipboard(text) {
+      // Create a temporary textarea element to hold text
+      const tempElem = document.createElement('textarea');
+      tempElem.value = text;
+      document.body.appendChild(tempElem);
+
+      // Select and copy the text
+      tempElem.select();
+      document.execCommand('copy');
+
+      // Remove the temporary element
+      document.body.removeChild(tempElem);
+      alert('Copied to clipboard!');
+    }
+  </script>
+</body>
+</html>

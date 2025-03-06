@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Guide</title>
+  <style>
+    /* Base resets and body styling */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #121212;
+      color: #FFFFFF;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* Header styling */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #1f1f1f;
+      padding: 20px;
+      border-bottom: 2px solid #444;
+    }
+
+    .header img.logo {
+      height: 50px;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      margin-left: 10px;
+    }
+
+    /* Main container styling */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 30px auto;
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      padding: 20px;
+    }
+
+    /* Section block styling */
+    .section {
+      background-color: #222;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      border-left: 5px solid #007bff; /* Accent color */
+    }
+
+    .section h2 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #444;
+      padding-bottom: 5px;
+    }
+
+    /* Labels and inputs */
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #ccc;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #555;
+      border-radius: 5px;
+      background-color: #333;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+    }
+
+    input::placeholder {
+      color: #aaa;
+    }
+
+    /* Info text styling */
+    .description {
+      font-size: 14px;
+      color: #bbb;
+      margin-bottom: 5px;
+      font-style: italic;
+    }
+
+    .limitations {
+      font-size: 14px;
+      color: #ff4d4d;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .example {
+      font-size: 14px;
+      color: #bbb;
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    /* Summary section styling */
+    #summary-section {
+      display: none;
+      background-color: #222;
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 5px solid #28a745; /* Accent color for summary */
+      margin-bottom: 20px;
+    }
+
+    #summary-section h2 {
+      margin-bottom: 15px;
+      border-bottom: 2px solid #444;
+      padding-bottom: 5px;
+    }
+
+    #summary-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    #summary-table th,
+    #summary-table td {
+      border: 1px solid #555;
+      padding: 10px;
+    }
+
+    #summary-table th {
+      background-color: #333;
+      font-weight: bold;
+    }
+
+    #summary-table td {
+      background-color: #2c2c2c;
+    }
+
+    /* Raw JSON section styling */
+    #raw-json-section {
+      display: none;
+      background-color: #222;
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 5px solid #28a745;
+      margin-bottom: 20px;
+    }
+
+    #raw-json-section h2 {
+      margin-bottom: 15px;
+      border-bottom: 2px solid #444;
+      padding-bottom: 5px;
+    }
+
+    pre.json-output {
+      background-color: #1a1a1a;
+      border: 1px solid #444;
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+      white-space: pre;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    /* Button styling */
+    .show-summary-btn {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+
+    .show-summary-btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <img src="logo.png" alt="Logo" class="logo" />
+    <h1>User Guide</h1>
+  </div>
+
+  <!-- Main Container -->
+  <div class="container">
+    <div class="section">
+      <h2>Account Information</h2>
+
+      <label for="account-name">Account Name:</label>
+      <p class="description">For price request identification.</p>
+      <input type="text" id="account-name" placeholder="DEF Co" />
+      <p class="limitations">Should not be empty.</p>
+      <p class="example">Example: DEF Co</p>
+
+      <label for="account-address">Account Address:</label>
+      <p class="description">For price request identification.</p>
+      <input type="text" id="account-address" placeholder="1st Main St" />
+      <p class="limitations">Should not be empty.</p>
+      <p class="example">Example: 1st Main St</p>
+
+      <label for="account-number">Account #:</label>
+      <p class="description">For price request identification.</p>
+      <input type="text" id="account-number" placeholder="111111-111111" />
+      <p class="limitations">Should not be empty.</p>
+      <p class="example">Example: 111111-111111</p>
+
+      <label for="curve-date">Curve Date:</label>
+      <p class="description">Curves date of processing.</p>
+      <input type="date" id="curve-date" />
+      <p class="limitations">Energy curves must be present on this date.</p>
+      <p class="example">Example: 4/19/2024</p>
+
+      <label for="timestamp">TimeStamp:</label>
+      <p class="description">
+        Time of curves within a single date of processing. Specify time if COB is not required 
+        and multiple curves are present in single date.
+      </p>
+      <input type="text" id="timestamp" placeholder="COB or specific time" />
+      <p class="limitations">
+        If not COB, then the specified time must be available in the curve date.
+      </p>
+      <p class="example">Example: COB</p>
+
+      <label for="start-date">Start Date:</label>
+      <p class="description">Start Date.</p>
+      <input type="date" id="start-date" />
+      <p class="limitations">Data must be available in specified date range.</p>
+      <p class="example">Example: 9/1/2024</p>
+
+      <label for="term-months">Term (Months):</label>
+      <p class="description">Difference of months between start and end date.</p>
+      <input type="number" id="term-months" placeholder="12" />
+      <p class="example">Example: 12</p>
+
+      <label for="end-date">End Date:</label>
+      <p class="description">End Date.</p>
+      <input type="date" id="end-date" />
+      <p class="limitations">Data must be available in specified date range.</p>
+      <p class="example">Example: 9/1/2025</p>
+
+      <!-- CONTROL AREA (MARKET) -->
+      <label for="control-area">Control Area:</label>
+      <p class="description">Market of interest for price desk calculation.</p>
+      <select id="control-area">
+        <option value="">--Select Control Area--</option>
+      </select>
+      <p class="limitations">
+        Must be one of the available markets (ERCOT, MISO, NYISO, ISONE, PJM).
+      </p>
+      <p class="example">Example: ERCOT</p>
+
+      <!-- STATE -->
+      <label for="state">State:</label>
+      <p class="description">State of interest for price desk calculation.</p>
+      <select id="state">
+        <option value="">--Select State--</option>
+      </select>
+      <p class="limitations">
+        Specified State must be present in specified curve date.
+      </p>
+      <p class="example">Example: TX</p>
+
+      <!-- LOAD ZONE -->
+      <label for="load-zone">Load Zone:</label>
+      <p class="description">Load Zone of interest for price desk calculation.</p>
+      <select id="load-zone">
+        <option value="">--Select Load Zone--</option>
+      </select>
+      <p class="limitations">
+        Specified Load Zone must be present in specified curve date.
+      </p>
+      <p class="example">Example: NORTH ZONE</p>
+
+      <!-- CAPACITY ZONE -->
+      <label for="capacity-zone">Capacity Zone:</label>
+      <p class="description">Capacity Zone of interest for price desk calculation.</p>
+      <select id="capacity-zone">
+        <option value="">--Select Capacity Zone--</option>
+      </select>
+      <p class="limitations">
+        Specified Capacity Zone must be present in specified curve date.
+      </p>
+      <p class="example">Example: NORTH ZONE</p>
+
+      <!-- UTILITY -->
+      <label for="utility">Utility:</label>
+      <p class="description">Utility of interest for price desk calculation.</p>
+      <select id="utility">
+        <option value="">--Select Utility--</option>
+      </select>
+      <p class="limitations">
+        Specified Utility must be present in specified curve date.
+      </p>
+      <p class="example">Example: Oncor</p>
+
+      <label for="load-profile">Load Profile:</label>
+      <p class="description">Load Profile of interest for price desk calculation.</p>
+      <input type="text" id="load-profile" placeholder="BUSHIDG_NORTH" />
+      <p class="limitations">
+        Specified Load Profile must be present in selected curve date of load profile.
+      </p>
+      <p class="example">Example: BUSHIDG_NORTH</p>
+
+      <label for="voltage">Voltage:</label>
+      <p class="description">Voltage of interest for price desk calculation.</p>
+      <input type="text" id="voltage" placeholder="B" />
+      <p class="limitations">
+        Specified Voltage must be present in selected curve date for lineloss.
+      </p>
+      <p class="example">Example: B</p>
+
+      <label for="plc">PLC (kW-mo):</label>
+      <p class="description">A special factor in dollar amounts.</p>
+      <input type="text" id="plc" placeholder="-" />
+      <p class="limitations">Can be empty if not required by the market.</p>
+      <p class="example">Example: -</p>
+
+      <label for="nspl">NSPL (kW-mo):</label>
+      <p class="description">A special factor in dollar amounts.</p>
+      <input type="text" id="nspl" placeholder="-" />
+      <p class="limitations">Can be empty if not required by the market.</p>
+      <p class="example">Example: -</p>
+
+      <label for="margin">Margin ($/MWh):</label>
+      <input type="text" id="margin" placeholder="$10.00" />
+      <p class="description">A special factor in dollar amounts.</p>
+      <p class="example">Example: $10.00</p>
+
+      <label for="sleeve-fee">Sleeve Fee ($/MWh):</label>
+      <p class="description">A special factor in dollar amounts.</p>
+      <input type="text" id="sleeve-fee" placeholder="$1.25" />
+      <p class="example">Example: $1.25</p>
+
+      <label for="utility-billing">Utility Billing Surcharge ($/MWh):</label>
+      <p class="description">A special factor in dollar amounts.</p>
+      <input type="text" id="utility-billing" placeholder="$0.50" />
+      <p class="example">Example: $0.50</p>
+
+      <label for="other1">Other 1 ($/MWh):</label>
+      <p class="description">A special factor in dollar amounts.</p>
+      <input type="text" id="other1" placeholder="$1.00" />
+      <p class="example">Example: $1.00</p>
+
+      <label for="other2">Other 2 ($/MWh):</label>
+      <p class="description">A special factor in dollar amounts.</p>
+      <input type="text" id="other2" placeholder="$0.00" />
+      <p class="example">Example: $0.00</p>
+    </div>
+
+    <!-- Summary Section -->
+    <button class="show-summary-btn" onclick="showSummary()">Show Summary</button>
+
+    <div class="section" id="summary-section">
+      <h2>Summary</h2>
+      <table id="summary-table">
+        <thead>
+          <tr>
+            <th>Field Name</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Table rows are dynamically generated here -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Raw JSON Section (Request Body) -->
+    <div class="section" id="raw-json-section">
+      <h2>Raw JSON Body</h2>
+      <p>
+        The request body (raw JSON) includes one or more price request forms, along with 
+        <code>response_type</code> and <code>response_file_type</code> parameters.
+      </p>
+      <pre class="json-output" id="json-container"></pre>
+    </div>
+  </div>
+
+  <script>
+    // All unique combinations expanded from the table you provided.
+    const combinations = [
+      {controlArea:"ERCOT", state:"TX", loadZone:"Houston Zone", capacityZone:"Houston Zone", utility:"AEP-CENTRAL"},
+      {controlArea:"ERCOT", state:"TX", loadZone:"Houston Zone", capacityZone:"Houston Zone", utility:"CENTERPOINT"},
+      {controlArea:"ERCOT", state:"TX", loadZone:"Houston Zone", capacityZone:"Houston Zone", utility:"TNMP"},
+      {controlArea:"ERCOT", state:"TX", loadZone:"North Zone", capacityZone:"North Zone", utility:"AEP-North"},
+      {controlArea:"ERCOT", state:"TX", loadZone:"North Zone", capacityZone:"North Zone", utility:"Oncor"},
+      {controlArea:"ERCOT", state:"TX", loadZone:"North Zone", capacityZone:"North Zone", utility:"TNMP"},
+      {controlArea:"ERCOT", state:"TX", loadZone:"West Zone", capacityZone:"West Zone", utility:"AEP-North"},
+      {controlArea:"ERCOT", state:"TX", loadZone:"West Zone", capacityZone:"West Zone", utility:"Oncor"},
+      {controlArea:"ERCOT", state:"TX", loadZone:"West Zone", capacityZone:"West Zone", utility:"TNMP"},
+      {controlArea:"ERCOT", state:"TX", loadZone:"South Zone", capacityZone:"South Zone", utility:"AEP-North"},
+      {controlArea:"ERCOT", state:"TX", loadZone:"South Zone", capacityZone:"South Zone", utility:"AEP-CENTRAL"},
+      {controlArea:"ERCOT", state:"TX", loadZone:"South Zone", capacityZone:"South Zone", utility:"Oncor"},
+      {controlArea:"ISONE", state:"CT", loadZone:"CONNECTICUT", capacityZone:"CONNECTICUT", utility:"CLP"},
+      {controlArea:"ISONE", state:"CT", loadZone:"CONNECTICUT", capacityZone:"CONNECTICUT", utility:"UI"},
+      {controlArea:"ISONE", state:"MA", loadZone:"NEMASSBOST", capacityZone:"NEMASSBOST", utility:"NGRID"},
+      {controlArea:"ISONE", state:"MA", loadZone:"NEMASSBOST", capacityZone:"NEMASSBOST", utility:"NSTAR"},
+      {controlArea:"ISONE", state:"MA", loadZone:"SEMASS", capacityZone:"SEMASS", utility:"NGRID"},
+      {controlArea:"ISONE", state:"MA", loadZone:"SEMASS", capacityZone:"SEMASS", utility:"NSTAR"},
+      {controlArea:"ISONE", state:"MA", loadZone:"WCMASS", capacityZone:"WCMASS", utility:"FGE"},
+      {controlArea:"ISONE", state:"MA", loadZone:"WCMASS", capacityZone:"WCMASS", utility:"NGRID"},
+      {controlArea:"ISONE", state:"MA", loadZone:"WCMASS", capacityZone:"WCMASS", utility:"WMECO"},
+      {controlArea:"ISONE", state:"MA", loadZone:"WCMASS", capacityZone:"WCMASS", utility:"NSTAR"},
+      {controlArea:"ISONE", state:"ME", loadZone:"MAINE", capacityZone:"MAINE", utility:"BHE"},
+      {controlArea:"ISONE", state:"ME", loadZone:"MAINE", capacityZone:"MAINE", utility:"CMP"},
+      {controlArea:"ISONE", state:"NH", loadZone:"NEWHAMPSHIRE", capacityZone:"NEWHAMPSHIRE", utility:"GSECO"},
+      {controlArea:"ISONE", state:"NH", loadZone:"NEWHAMPSHIRE", capacityZone:"NEWHAMPSHIRE", utility:"NHEC"},
+      {controlArea:"ISONE", state:"NH", loadZone:"NEWHAMPSHIRE", capacityZone:"NEWHAMPSHIRE", utility:"PSNH"},
+      {controlArea:"ISONE", state:"NH", loadZone:"NEWHAMPSHIRE", capacityZone:"NEWHAMPSHIRE", utility:"UES"},
+      {controlArea:"ISONE", state:"RI", loadZone:"RHODEISLAND", capacityZone:"RHODEISLAND", utility:"NARRAG"},
+      {controlArea:"MISO", state:"IL", loadZone:"AMILCILCO", capacityZone:"AMILCILCO", utility:"AMEREN"},
+      {controlArea:"MISO", state:"IL", loadZone:"AMILCIPS", capacityZone:"AMILCIPS", utility:"AMEREN"},
+      {controlArea:"MISO", state:"IL", loadZone:"AMILIP", capacityZone:"AMILIP", utility:"AMEREN"},
+      {controlArea:"NYISO", state:"NY", loadZone:"ALL", capacityZone:"ALL", utility:"CENHUD"},
+      {controlArea:"NYISO", state:"NY", loadZone:"ALL", capacityZone:"ALL", utility:"CONED"},
+      {controlArea:"NYISO", state:"NY", loadZone:"ALL", capacityZone:"ALL", utility:"NIMO"},
+      {controlArea:"NYISO", state:"NY", loadZone:"ALL", capacityZone:"ALL", utility:"NYSEG"},
+      {controlArea:"NYISO", state:"NY", loadZone:"ALL", capacityZone:"ALL", utility:"ORU"},
+      {controlArea:"NYISO", state:"NY", loadZone:"ALL", capacityZone:"ALL", utility:"RGE"},
+      {controlArea:"PJM", state:"DC", loadZone:"PEPCO", capacityZone:"PEPCO", utility:"PEPCO"},
+      {controlArea:"PJM", state:"DE", loadZone:"DPL", capacityZone:"DPL", utility:"DPL"},
+      {controlArea:"PJM", state:"IL", loadZone:"COMED", capacityZone:"COMED", utility:"COMED"},
+      {controlArea:"PJM", state:"MD", loadZone:"BGE", capacityZone:"BGE", utility:"BGE"},
+      {controlArea:"PJM", state:"MD", loadZone:"DPL", capacityZone:"DPL", utility:"DPL"},
+      {controlArea:"PJM", state:"MD", loadZone:"PEPCO", capacityZone:"PEPCO", utility:"PEPCO"},
+      {controlArea:"PJM", state:"MD", loadZone:"POTED", capacityZone:"POTED", utility:"POTED"},
+      {controlArea:"PJM", state:"MD", loadZone:"SMECO", capacityZone:"SMECO", utility:"SMECO"},
+      {controlArea:"PJM", state:"NJ", loadZone:"AECO", capacityZone:"AECO", utility:"AECO"},
+      {controlArea:"PJM", state:"NJ", loadZone:"JCPL", capacityZone:"JCPL", utility:"JCPL"},
+      {controlArea:"PJM", state:"NJ", loadZone:"PSEG", capacityZone:"PSEG", utility:"PSEG"},
+      {controlArea:"PJM", state:"NJ", loadZone:"RECO", capacityZone:"RECO", utility:"RECO"},
+      {controlArea:"PJM", state:"NJ", loadZone:"RECO", capacityZone:"RECO", utility:"RECO - WEST"},
+      {controlArea:"PJM", state:"OH", loadZone:"AEP", capacityZone:"AEP", utility:"CSPC"},
+      {controlArea:"PJM", state:"OH", loadZone:"AEP", capacityZone:"AEP", utility:"OPC"},
+      {controlArea:"PJM", state:"OH", loadZone:"ATSI", capacityZone:"ATSI", utility:"CEI"},
+      {controlArea:"PJM", state:"OH", loadZone:"ATSI", capacityZone:"ATSI", utility:"OE"},
+      {controlArea:"PJM", state:"OH", loadZone:"ATSI", capacityZone:"ATSI", utility:"TE"},
+      {controlArea:"PJM", state:"OH", loadZone:"DAY", capacityZone:"DAY", utility:"DAYTON"},
+      {controlArea:"PJM", state:"OH", loadZone:"DEOK", capacityZone:"DEOK", utility:"DUKE"},
+      {controlArea:"PJM", state:"PA", loadZone:"ATSI", capacityZone:"ATSI", utility:"PENNPOWER"},
+      {controlArea:"PJM", state:"PA", loadZone:"ATSI", capacityZone:"ATSI", utility:"WPP"},
+      {controlArea:"PJM", state:"PA", loadZone:"DUQ", capacityZone:"DUQ", utility:"DQE"},
+      {controlArea:"PJM", state:"PA", loadZone:"METED", capacityZone:"METED", utility:"METED"},
+      {controlArea:"PJM", state:"PA", loadZone:"PECO", capacityZone:"PECO", utility:"PECO"},
+      {controlArea:"PJM", state:"PA", loadZone:"PENELEC", capacityZone:"PENELEC", utility:"PENELEC"},
+      {controlArea:"PJM", state:"PA", loadZone:"PPL", capacityZone:"PPL", utility:"PPL"},
+      {controlArea:"PJM", state:"PA", loadZone:"UGI", capacityZone:"UGI", utility:"UGI"}
+    ];
+
+    // Populate the Control Area dropdown
+    function populateControlAreas() {
+      const controlAreaSelect = document.getElementById("control-area");
+      // Clear out any old options (except the placeholder)
+      controlAreaSelect.innerHTML = '<option value="">--Select Control Area--</option>';
+
+      const uniqueControlAreas = [...new Set(combinations.map(item => item.controlArea))];
+      uniqueControlAreas.forEach(area => {
+        const option = document.createElement("option");
+        option.value = area;
+        option.textContent = area;
+        controlAreaSelect.appendChild(option);
+      });
+    }
+
+    function handleControlAreaChange() {
+      const selectedCA = document.getElementById("control-area").value;
+      const stateSelect = document.getElementById("state");
+      const loadZoneSelect = document.getElementById("load-zone");
+      const capacityZoneSelect = document.getElementById("capacity-zone");
+      const utilitySelect = document.getElementById("utility");
+
+      // Filter for matching states
+      const filteredStates = combinations
+        .filter(c => c.controlArea === selectedCA)
+        .map(c => c.state);
+      const uniqueStates = [...new Set(filteredStates)];
+
+      // Populate the State dropdown
+      stateSelect.innerHTML = '<option value="">--Select State--</option>';
+      uniqueStates.forEach(st => {
+        const option = document.createElement("option");
+        option.value = st;
+        option.textContent = st;
+        stateSelect.appendChild(option);
+      });
+
+      // Reset dependent dropdowns
+      loadZoneSelect.innerHTML = '<option value="">--Select Load Zone--</option>';
+      capacityZoneSelect.innerHTML = '<option value="">--Select Capacity Zone--</option>';
+      utilitySelect.innerHTML = '<option value="">--Select Utility--</option>';
+    }
+
+    function handleStateChange() {
+      const selectedCA = document.getElementById("control-area").value;
+      const selectedState = document.getElementById("state").value;
+      const loadZoneSelect = document.getElementById("load-zone");
+      const capacityZoneSelect = document.getElementById("capacity-zone");
+      const utilitySelect = document.getElementById("utility");
+
+      // Filter for matching load zones
+      const filteredLZ = combinations
+        .filter(c => c.controlArea === selectedCA && c.state === selectedState)
+        .map(c => c.loadZone);
+      const uniqueLZ = [...new Set(filteredLZ)];
+
+      // Populate the Load Zone dropdown
+      loadZoneSelect.innerHTML = '<option value="">--Select Load Zone--</option>';
+      uniqueLZ.forEach(lz => {
+        const option = document.createElement("option");
+        option.value = lz;
+        option.textContent = lz;
+        loadZoneSelect.appendChild(option);
+      });
+
+      // Reset dependent dropdowns
+      capacityZoneSelect.innerHTML = '<option value="">--Select Capacity Zone--</option>';
+      utilitySelect.innerHTML = '<option value="">--Select Utility--</option>';
+    }
+
+    function handleLoadZoneChange() {
+      const selectedCA = document.getElementById("control-area").value;
+      const selectedState = document.getElementById("state").value;
+      const selectedLZ = document.getElementById("load-zone").value;
+      const capacityZoneSelect = document.getElementById("capacity-zone");
+      const utilitySelect = document.getElementById("utility");
+
+      // Filter for matching capacity zones
+      const filteredCZ = combinations
+        .filter(c => c.controlArea === selectedCA && c.state === selectedState && c.loadZone === selectedLZ)
+        .map(c => c.capacityZone);
+      const uniqueCZ = [...new Set(filteredCZ)];
+
+      // Populate the Capacity Zone dropdown
+      capacityZoneSelect.innerHTML = '<option value="">--Select Capacity Zone--</option>';
+      uniqueCZ.forEach(cz => {
+        const option = document.createElement("option");
+        option.value = cz;
+        option.textContent = cz;
+        capacityZoneSelect.appendChild(option);
+      });
+
+      // Reset the Utility dropdown
+      utilitySelect.innerHTML = '<option value="">--Select Utility--</option>';
+    }
+
+    function handleCapacityZoneChange() {
+      const selectedCA = document.getElementById("control-area").value;
+      const selectedState = document.getElementById("state").value;
+      const selectedLZ = document.getElementById("load-zone").value;
+      const selectedCZ = document.getElementById("capacity-zone").value;
+      const utilitySelect = document.getElementById("utility");
+
+      // Filter for matching utilities
+      const filteredUtils = combinations
+        .filter(c =>
+          c.controlArea === selectedCA &&
+          c.state === selectedState &&
+          c.loadZone === selectedLZ &&
+          c.capacityZone === selectedCZ
+        )
+        .map(c => c.utility);
+      const uniqueUtils = [...new Set(filteredUtils)];
+
+      // Populate the Utility dropdown
+      utilitySelect.innerHTML = '<option value="">--Select Utility--</option>';
+      uniqueUtils.forEach(u => {
+        const option = document.createElement("option");
+        option.value = u;
+        option.textContent = u;
+        utilitySelect.appendChild(option);
+      });
+    }
+
+    // Attach event listeners for dynamic selects
+    document.getElementById("control-area").addEventListener("change", handleControlAreaChange);
+    document.getElementById("state").addEventListener("change", handleStateChange);
+    document.getElementById("load-zone").addEventListener("change", handleLoadZoneChange);
+    document.getElementById("capacity-zone").addEventListener("change", handleCapacityZoneChange);
+
+    // On page load, populate Control Areas
+    window.onload = function() {
+      populateControlAreas();
+    };
+
+    // When user clicks "Show Summary", build the table of all field values, and generate the RAW JSON Body
+    function showSummary() {
+      // Gather references
+      const summarySection = document.getElementById('summary-section');
+      const summaryTableBody = document.getElementById('summary-table').getElementsByTagName('tbody')[0];
+      const rawJsonSection = document.getElementById('raw-json-section');
+      const jsonContainer = document.getElementById('json-container');
+
+      // Clear any existing rows or data
+      summaryTableBody.innerHTML = '';
+      jsonContainer.textContent = '';
+
+      // List of all fields and their human-friendly names
+      const fields = [
+        { label: 'Account Name', id: 'account-name' },
+        { label: 'Account Address', id: 'account-address' },
+        { label: 'Account #', id: 'account-number' },
+        { label: 'Curve Date', id: 'curve-date' },
+        { label: 'TimeStamp', id: 'timestamp' },
+        { label: 'Start Date', id: 'start-date' },
+        { label: 'Term (Months)', id: 'term-months' },
+        { label: 'End Date', id: 'end-date' },
+        { label: 'Control Area', id: 'control-area' },
+        { label: 'Utility', id: 'utility' },
+        { label: 'Load Zone', id: 'load-zone' },
+        { label: 'Capacity Zone', id: 'capacity-zone' },
+        { label: 'State', id: 'state' },
+        { label: 'Load Profile', id: 'load-profile' },
+        { label: 'Voltage', id: 'voltage' },
+        { label: 'PLC (kW-mo)', id: 'plc' },
+        { label: 'NSPL (kW-mo)', id: 'nspl' },
+        { label: 'Margin ($/MWh)', id: 'margin' },
+        { label: 'Sleeve Fee ($/MWh)', id: 'sleeve-fee' },
+        { label: 'Utility Billing Surcharge ($/MWh)', id: 'utility-billing' },
+        { label: 'Other 1 ($/MWh)', id: 'other1' },
+        { label: 'Other 2 ($/MWh)', id: 'other2' }
+      ];
+
+      // Populate the summary table
+      fields.forEach(field => {
+        const row = summaryTableBody.insertRow();
+        const cellLabel = row.insertCell();
+        const cellValue = row.insertCell();
+
+        cellLabel.textContent = field.label;
+        const element = document.getElementById(field.id);
+        cellValue.textContent = element ? element.value : '';
+      });
+
+      // Construct the JSON body based on user inputs
+      const priceRequestForm = {
+        "Account Name": document.getElementById('account-name').value,
+        "Account Address": document.getElementById('account-address').value,
+        "Account #": document.getElementById('account-number').value,
+        "Curve Date": document.getElementById('curve-date').value,
+        "TimeStamp": document.getElementById('timestamp').value,
+        "Start Date": document.getElementById('start-date').value,
+        "Term (Months)": document.getElementById('term-months').value,
+        "End Date": document.getElementById('end-date').value,
+        "Control Area": document.getElementById('control-area').value.toUpperCase(),
+        "Utility": document.getElementById('utility').value,
+        "Load Zone": document.getElementById('load-zone').value,
+        "Capacity Zone": document.getElementById('capacity-zone').value,
+        "State": document.getElementById('state').value,
+        "Load Profile": document.getElementById('load-profile').value,
+        "Voltage": document.getElementById('voltage').value,
+        "PLC (kW-mo)": document.getElementById('plc').value,
+        "NSPL (kW-mo)": document.getElementById('nspl').value,
+        "Margin ($/MWh)": document.getElementById('margin').value,
+        "Sleeve Fee ($/MWh)": document.getElementById('sleeve-fee').value,
+        "Utility Billing Surcharge ($/MWh)": document.getElementById('utility-billing').value,
+        "Other 1 ($/MWh)": document.getElementById('other1').value,
+        "Other 2 ($/MWh)": document.getElementById('other2').value,
+        "Historical Usage": "N"
+      };
+
+      // Example default response type and file type
+      const requestBody = {
+        "price_request_forms": [priceRequestForm],
+        "response_type": "hourly_calulation",
+        // Possible values: "summary", "monthly_summary", "grouped_costs", "hourly_costs", "hourly_calulation"
+        "response_file_type": "xlsx"
+        // Possible values: "csv" or "xlsx"
+      };
+
+      // Display the constructed JSON in the raw JSON section
+      jsonContainer.textContent = JSON.stringify(requestBody, null, 2);
+
+      // Show the summary section and raw JSON section
+      summarySection.style.display = 'block';
+      rawJsonSection.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
